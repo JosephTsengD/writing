@@ -1,0 +1,87 @@
+<ul class="breadcrumb">
+	<li><a href="writing_article_list">文章列表</a></li>
+	<li><a th:href="${'writing_start_read?topicId=' +  t.id}">閱讀文章</li>
+	<li class="active">一、審題</li>
+</ul>
+<div style="margin: 0 auto; width: 1300px;">
+	<!-- 左半區塊 -->
+	<div id="left">
+		<!-- 題目 -->
+		<div class="page-header">
+			<h1 th:text="${t.topic}"></h1>
+		</div>
+		<div class="apple"
+			style="background-color: #e2fee8; border-radius: 10px; padding-left: 2px;">
+			<span class="glyphicon glyphicon-minus" data-toggle="collapse"
+				data-target="#title"></span> 題目說明:
+			<div id="title" th:text="${t.description}"></div>
+		</div>
+		本文開始:
+		<div id="editable" class="apple" contenteditable="true"
+			th:utext="${(tr!=null && tr.answer!=null && tr.answer.length()!=0)? tr.answer : t.article1 +t.article2 +t.article3 + t.article4 }"
+			th:attrappend="data-id=${t.id}"></div>
+		<br />
+		<button type="button" class="btn btn-primary" data-toggle="collapse"
+			data-target="#review">評分說明</button>
+		<div id="review" class="apple"
+			style="background-color: #e2fee8; border-radius: 10px; padding-left: 2px;"
+			th:text="${t.review}"></div>
+	</div>
+
+
+	<!-- 右半區塊 -->
+	<div id="right">
+		<div class="record">
+			<h1>
+				<span class="glyphicon glyphicon-pencil"></span>&nbsp;一、審題
+			</h1>
+		</div>
+		<div id="slider3_container"
+			style="position: relative; top: 0px; left: 0px; width: 701px; height: 910px; background: #fff; overflow: hidden;">
+			<!-- Slides Container -->
+			<div u="slides"
+				style="cursor: move; position: absolute; left: 60px; top: 0px; width: 500px; height: 900px; border: 1px solid #aaaaaa; border-radius: 10px; -webkit-filter: blur(0px); background-color: #f5f5f5; overflow: hidden;">
+				<div>
+					<div class="alert">
+						<span class="glyphicon glyphicon-info-sign"></span>
+						根據審題的定義閱讀題目與範文內容，再以引導問題做思考，點擊題目可以觀看參考答案，單擊參考答案會標記文章關鍵重點，雙擊取消標記，思考記錄區可以記錄自己的想法
+					</div>
+					<div class="container" th:each="f : ${fl}"
+						th:if="${f.type.equals('0')}">
+						<div class="header">
+							<span th:text="${f.title}">一、審視題目後，你認為文章使用什麼文體?&nbsp;</span> <span
+								class="glyphicon glyphicon-question-sign" data-container="body"
+								data-toggle="tooltip" data-placement="right"
+								th:title="${f.titleTip}"
+								title="閱讀完題目說明後先判斷本篇文章將以什麼文體撰寫 (例如: 記敘文、議論文)"> </span>
+						</div>
+						<div class="content forum_box">
+							<textarea rows="3" cols="55" th:attrappend="data-id=${f.id}"
+								th:text="${viewHelper.getForumRecordByForumId(fr,f.id) != null ? viewHelper.getForumRecordByForumId(fr,f.id).answer : ''}"
+								name="thinkrecord1" placeholder="思考紀錄..."></textarea>
+							<br />
+							<button type="button" class="glyphicon glyphicon-font"
+								style="font-size: 10.5px; border-radius: 50%; color: #fff; background-color: #5bc0de;"
+								data-container="body" data-toggle="tooltip"
+								data-placement="right" title="參考答案"></button>
+							<div class="ans-area answer" style="display: none;">
+								<span class="answer-text" th:text="${f.answer}"></span>
+								<p th:utext="${f.answerTip}" style="color: #479a4b;"></p>
+							</div>
+
+						</div>
+					</div>
+					<div u="thumb">1. 審題</div>
+				</div>
+			</div>
+		</div>
+		<a class="btn btn-default"
+			th:href="${'writing_start_read?topicId=' +  t.id}" role="button"
+			style="position: absolute; right: 120px;">上一步</a> <a
+			class="btn btn-default" th:href="${'writing_step2?topicId=' +  t.id}"
+			role="button" style="position: absolute; right: 50px;">下一步</a>
+	</div>
+</div>
+
+<!-- 觀看答案script -->
+<script type="text/javascript" src="custom/js/writing.js"></script>

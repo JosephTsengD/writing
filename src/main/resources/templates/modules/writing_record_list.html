@@ -1,0 +1,39 @@
+
+<div class="container marketing">
+
+	<div class="hero-unit">
+
+		<h1>
+			<span> <img alt="Generic placeholder image" class="img-circle"
+				src="images/record4.png" style="width: 140px; height: 140px;">
+			</span> &nbsp;思考歷程記錄
+		</h1>
+		<p>
+			<span class="text-muted" style="font-weight: bold;">
+				選擇練習過的題目觀看先前的思考紀錄! </span>
+		</p>
+	</div>
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th style="width: 100px;">題目</th>
+				<th>引言說明</th>
+				<th style="width: 60px;">觀看記錄</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="t: ${tl}">
+				<th scope="row" th:text="${t.id}"></th>
+				<td th:text="${t.topic}"></td>
+				<!-- topic 通關密語-1-->
+				<td th:text="${t.description}"></td>
+				<!-- description -->
+				<td><a class="btn btn-primary"
+					th:href="${'writing_start?topicId=' +  t.id}" role="button"
+					style="font-size: 12px">歷程記錄</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,17 @@
+Development Guideline:
+
+
+Download STS from https://spring.io/tools/sts/all
+
+
+import project by Exist Maven Project
+
+
+forward engineering ER diagram into database schema
+add user to mysql -> account : joseph / password : 123456 / role : DBA
+
+
+right click project -> run as -> add maven configuration -> choose project -> goal : clean install -> skip test
+
+
+right click project -> run as -> Spring Boot App

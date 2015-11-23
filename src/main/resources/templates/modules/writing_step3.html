@@ -1,0 +1,91 @@
+<ul class="breadcrumb">
+	<li><a href="writing_article_list">文章列表</a></li>
+	<li><a th:href="${'writing_start_read?topicId=' +  t.id}">閱讀文章</li>
+	<li><a th:href="${'writing_step1?topicId=' +  t.id}">一、審題</li>
+	<li><a th:href="${'writing_step2?topicId=' +  t.id}">二、立意</li>
+	<li class="active">三、構思取材</li>
+</ul>
+<div style="margin: 0 auto; width: 1300px;">
+	<!-- 左半區塊 -->
+	<div id="left" style="width: 540px;">
+		<!-- 題目 -->
+		<div class="page-header">
+			<h1 th:text="${t.topic}"></h1>
+		</div>
+		<div class="panel panel-success">
+			<div class="panel-heading" style="color: #000;">
+				<h3 class="panel-title apple">
+					題目說明:
+					<div th:text="${t.description}"></div>
+				</h3>
+			</div>
+			本文開始:
+			<div id="editable" class="panel-body apple" style="width: 540px;"
+				contenteditable="true"
+				th:utext="${(tr!=null && tr.answer!=null && tr.answer.length()!=0)? tr.answer : t.article1 +t.article2 +t.article3 + t.article4 }"
+				th:attrappend="data-id=${t.id}"></div>
+			<br />
+
+			<button type="button" class="btn btn-primary" data-toggle="collapse"
+				data-target="#review">評分說明</button>
+
+			<div id="review" class="apple"
+				style="background-color: #e2fee8; border-radius: 10px; padding-left: 2px;"
+				th:text="${t.review}"></div>
+		</div>
+	</div>
+
+
+	<!-- 右半區塊 -->
+	<div id="right">
+		<div class="panel panel-info"
+			style="width: 580px; background-color: #f5f5f5; margin-top: 60px;">
+			<div class="panel-heading" style="width: 580px;">
+				<h1 class="panel-title" style="font-size: 20px; text-align: center;">
+					<span class="glyphicon glyphicon-pencil"></span>&nbsp;三、構思取材
+				</h1>
+			</div>
+			<div
+				style="position: relative; left: 10px; width: 570px; height: 900px; overflow-x: hidden; overflow-y: scroll;">
+				<div class="alert">
+					<span class="glyphicon glyphicon-info-sign"></span>
+					選材時，以分類而言，通常分成：一、作為立意對立面的反方立場材料，二、支持立意主旨的正方立場材料，三、走向支持立意主旨的經歷、轉折材料<br />
+					包含: 1.作者自身經歷 2.名言佳句 3.事例典故 4.成語詩詞...等
+				</div>
+				<div class="container" th:each="f : ${fl}"
+					th:if="${f.type.equals('2')}">
+					<div class="header">
+						<span th:text="${f.title}"></span> <span
+							class="glyphicon glyphicon-question-sign" data-container="body"
+							data-toggle="tooltip" data-placement="right"
+							th:title="${f.titleTip}"
+							title="閱讀完題目說明後先判斷本篇文章將以什麼文體撰寫 (例如: 記敘文、議論文)"> </span>
+					</div>
+					<div class="content forum_box">
+						<textarea rows="3" cols="55" th:attrappend="data-id=${f.id}"
+							th:text="${viewHelper.getForumRecordByForumId(fr,f.id) != null ? viewHelper.getForumRecordByForumId(fr,f.id).answer : ''}"
+							name="thinkrecord1" placeholder="思考紀錄..."></textarea>
+						<br />
+						<button type="button" class="btn btn-info"
+							style="font-size: 10.5px;">參考答案</button>
+						<div class="ans-area answer"
+							style="display: none; cursor: pointer;" data-container="body"
+							data-toggle="tooltip" data-placement="right"
+							title="點擊一下可以在左方文章重點標示喔! 再連點兩下可以取消標記">
+							<span class="answer-text" th:text="${f.answer}"></span>
+							<p th:utext="${f.answerTip}" style="color: #479a4b;"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a class="btn btn-default"
+			th:href="${'writing_step2?topicId=' +  t.id}" role="button"
+			style="position: absolute; right: 120px;">上一步</a> <a
+			class="btn btn-default" th:href="${'writing_step4?topicId=' +  t.id}"
+			role="button" style="position: absolute; right: 50px;">下一步</a>
+	</div>
+</div>
+
+<!-- 觀看答案script -->
+<script type="text/javascript" src="custom/js/writing.js"></script>

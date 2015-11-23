@@ -1,0 +1,108 @@
+<ul class="breadcrumb">
+	<li><a href="writing_article_list">文章列表</a></li>
+	<li><a th:href="${'writing_start_read?topicId=' +  t.id}">閱讀文章</li>
+	<li><a th:href="${'writing_step1?topicId=' +  t.id}">一、審題</li>
+	<li><a th:href="${'writing_step2?topicId=' +  t.id}">二、立意</li>
+	<li class="active">三、構思取材</li>
+</ul>
+<div style="margin: 0 auto; width: 1300px;">
+	<!-- 左半區塊 -->
+	<div id="left">
+		<!-- 題目 -->
+		<div class="page-header">
+			<h1 th:text="${t.topic}"></h1>
+		</div>
+		<div class="apple"
+			style="background-color: #e2fee8; border-radius: 10px; padding-left: 2px;">
+			<span class="glyphicon glyphicon-minus" data-toggle="collapse"
+				data-target="#title"></span> 題目說明:
+			<div id="title" th:text="${t.description}">
+				阿里巴巴能打開石門，是因為他知道「芝麻開門」的密語；烹飪高手能征服大家的味蕾，是因為他練就一身功夫，抓到美味的訣竅；演員能成功詮釋某個角色，必然是因為他對人生的悲歡離合有深刻的領會。對於人生的考驗，你是否也有自己的「通關密語」？請以「通關密語」為題，寫下你找出「密語」而得以「通關」的過程，以及其中的體會。文長不限。
+			</div>
+		</div>
+		本文開始:
+		<div id="editable" class="apple" contenteditable="true"
+			th:utext="${(tr!=null && tr.answer!=null && tr.answer.length()!=0)? tr.answer : t.article1 +t.article2 +t.article3 + t.article4 }"
+			th:attrappend="data-id=${t.id}">
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;汲汲營營於世，日夜苦思煩憂，我們用盡心力的追逐名與利，為求幸福的人生。而我們，卻仍陷於祿利之中，找不到方向，找不到真正能開啟幸福之門的通關密語。<br />
+			<br /> &nbsp;
+			早晨醒來，窗外鳥聲啁啾，我無意聆聽，媽媽親手製成的三明治，滿懷愛心的早晨，我食之無味，此時，我心中只有成績，思緒裡，只在意分數，與其無關者，皆不理會。「有了好成績，將來能進好的大學，未來可以找到好的工作，領有優渥薪資，迎來幸福」，這是我所堅信，所走的道路。<br />
+			<br /> &nbsp;
+			如往常般，耕耘於書桌上，突然，一道曙光，穿透緊閉的窗戶，射進房內，意外地，射進我的心。「不如，出去走走，為作文選材」，憑著仍為功名的藉口，我步出教科書外。河堤上，迎面吹來的春風微寒，道旁植物露珠，在朝陽照耀下，晶瑩剔透。突然有至陶淵明南山之感，心內一陣平靜。一兒童於公園內迷了路，一名男子，蹲在他身旁，邊安撫他，邊竭力理解他家的住址。「這就是孟子所言人之惻隱之心吧！」我驚異的發覺，古文所述，竟於真實世界中一一上演，於此刻，有些能體會柳宗元觀西山之感。<br />
+			<br /> &nbsp;
+			漫步悠遊，我竟漸漸忘卻利祿，如嬰童看世間般，我用全新的視角欣賞世界。突然，一種飄飄然之感，充斥著我身心，那是幸福之感，是我曾竭盡心力追求的人生目標，它的通關密語，竟在我臨時起意的散步中參破，彷有「眾裡尋他千百度，驀然回首，那人竟在燈火闌珊處」之感。<br />
+			<br /> &nbsp;
+			是的，幸福，一直在我身旁。早晨的鳥鳴，母親的愛，我卻習於忽視，反倒往遠在天邊，如遙遠恆星般，那不真切的「幸福」，全力邁進。我早已在幸福之中，卻處心積慮，破解密碼以啟幸福之門。<br />
+			&nbsp;<br />
+			抬頭仰望半月的夜空，再次尋找曾為我心中的北極星，似乎暗滅了，功名於我，不再代表幸福的象徵，也是呢！我不是早已獲得那組密語，打開大門了嗎？密語也只是「樂享一切，珍惜所有，知足常樂」，是極易參透的呢！<br />
+		</div>
+		<br />
+		<button type="button" class="btn btn-primary" data-toggle="collapse"
+			data-target="#review">評分說明</button>
+		<div id="review" class="apple"
+			style="background-color: #e2fee8; border-radius: 10px; padding-left: 2px;"
+			th:text="${t.review}">
+			一、
+			作者原以為唯有好成績、好大學、好工作，領優渥薪資，才能迎來幸福。在不經意間，因為看到公園內迷路的兒童，而以全新的視角欣賞世界，體悟到幸福其實就在自己身旁，進而參透「樂享一切，珍惜所有，知足常樂」是開啟幸福的通關密語。<br />二、
+			情感細膩，脈絡清晰，首尾呼應。
+		</div>
+	</div>
+
+
+	<!-- 右半區塊 -->
+	<div id="right">
+		<div class="record">
+			<h1>
+				<span class="glyphicon glyphicon-pencil"></span>&nbsp;三、構思取材
+			</h1>
+		</div>
+		<div id="slider3_container"
+			style="position: relative; top: 0px; left: 0px; width: 701px; height: 910px; background: #fff; overflow: hidden;">
+			<!-- Slides Container -->
+			<div u="slides"
+				style="cursor: move; position: absolute; left: 60px; top: 0px; width: 500px; height: 900px; border: 1px solid #aaaaaa; border-radius: 10px; -webkit-filter: blur(0px); background-color: #f5f5f5; overflow: hidden;">
+				<!-- 構思取材 -->
+				<div>
+					<div class="alert">
+						<span class="glyphicon glyphicon-info-sign"></span>
+						選材時，以分類而言，通常分成：一、作為立意對立面的反方立場材料，二、支持立意主旨的正方立場材料，三、走向支持立意主旨的經歷、轉折材料<br />
+						包含: 1.作者自身經歷 2.名言佳句 3.事例典故 4.成語詩詞...等
+					</div>
+					<div class="container" th:each="f : ${fl}"
+						th:if="${f.type.equals('2')}">
+						<div class="header">
+							<span th:text="${f.title}">一、審視題目後，你認為文章使用什麼文體?&nbsp;</span> <span
+								class="glyphicon glyphicon-question-sign" data-container="body"
+								data-toggle="tooltip" data-placement="right"
+								th:title="${f.titleTip}"
+								title="閱讀完題目說明後先判斷本篇文章將以什麼文體撰寫 (例如: 記敘文、議論文)"> </span>
+						</div>
+						<div class="content forum_box">
+							<textarea rows="3" cols="55" th:attrappend="data-id=${f.id}"
+								th:text="${viewHelper.getForumRecordByForumId(fr,f.id) != null ? viewHelper.getForumRecordByForumId(fr,f.id).answer : ''}"
+								name="thinkrecord1" placeholder="思考紀錄..."></textarea>
+							<br />
+							<button type="button" class="glyphicon glyphicon-font"
+								style="font-size: 10.5px; border-radius: 50%; color: #fff; background-color: #5bc0de;"
+								data-container="body" data-toggle="tooltip"
+								data-placement="right" title="參考答案"></button>
+							<div class="ans-area answer" style="display: none;">
+								<span class="answer-text" th:text="${f.answer}">&nbsp;</span>
+								<p th:utext="${f.answerTip}" style="color: #479a4b;"></p>
+							</div>
+						</div>
+					</div>
+					<div u="thumb">3. 構思取材</div>
+				</div>
+			</div>
+		</div>
+		<a class="btn btn-default"
+			th:href="${'writing_step2?topicId=' +  t.id}" role="button"
+			style="position: absolute; right: 120px;">上一步</a> <a
+			class="btn btn-default" th:href="${'writing_step4?topicId=' +  t.id}"
+			role="button" style="position: absolute; right: 50px;">下一步</a>
+	</div>
+</div>
+
+<!-- 觀看答案script -->
+<script type="text/javascript" src="custom/js/writing.js"></script>

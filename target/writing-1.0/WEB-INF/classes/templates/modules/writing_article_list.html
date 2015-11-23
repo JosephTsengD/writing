@@ -1,0 +1,38 @@
+
+<div class="container marketing">
+
+	<div class="hero-unit">
+		<!-- <div th:text="${user.account}"></div> 直接點選此頁面會ERROR   ACCOUNT CAN NOT FOUND-->
+		<h1>
+			<span> <img alt="Generic placeholder image" class="img-circle"
+				src="images/start1.jpg" style="width: 140px; height: 140px;">
+			</span> &nbsp;範文閱讀思考活動
+		</h1>
+		<p>
+			<span class="text-muted" style="font-weight: bold;">
+				選擇題目並開始進行範文閱讀思考活動! </span>
+		</p>
+	</div>
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th style="width: 100px;">題目</th>
+				<th>引言說明</th>
+				<th style="width: 60px;">開始!</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="t: ${tl}">
+				<th scope="row" th:text="${t.id}"></th>
+				<td th:text="${t.topic}"></td>
+				<!-- topic 通關密語-1-->
+				<td th:text="${t.description}"></td>
+				<!-- description -->
+				<td><a href="/writing_start_read?topicId=1"><span
+						class="glyphicon glyphicon-play" style="font-size: 25px;"></span></a></td>
+			</tr>
+
+		</tbody>
+	</table>
+</div>

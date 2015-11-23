@@ -1,0 +1,49 @@
+<nav class="navbar navbar-inverse ">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">範文閱讀系統</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				<li id="writing_home"><a href="writing_home.html"><span
+						class="glyphicon glyphicon-home"></span> Home</a></li>
+				<li id="writing_about"><a href="writing_about.html"><span
+						class="glyphicon glyphicon-info-sign"></span> About</a></li>
+				<li id="writing_learn"><a href="writing_learn.html"><span
+						class="glyphicon glyphicon-book"></span> Learn</a></li>
+				<li id="writing_help"><a href="writing_help.html"><span
+						class="glyphicon glyphicon-question-sign"></span> Help</a></li>
+				<li id="writing_article_list"><a
+					href="writing_article_list.html"><span
+						class="glyphicon glyphicon-play"></span> Start</a></li>
+				<!-- 不同頁面Header Active -->
+
+				<li id="writing_record_list"><a href="writing_record_list.html"><span
+						class="glyphicon glyphicon-time"></span> Record</a></li>
+				<li id="writing_edit"><a href="writing_edit.html"><span
+						class="glyphicon glyphicon-edit"></span> Edit</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li id="writing_regist"><a href="writing_regist.html"><span
+						class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+				
+					<li th:if="${user==null}"><a href="writing_login.html">
+					<span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+					<li th:if="${user!=null}"><a href="writing_login.html">
+					
+					<span
+							class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				
+			</ul>
+			
+		</div>
+	</div>
+</nav>

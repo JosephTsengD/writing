@@ -1,0 +1,284 @@
+<div style="margin: 0 auto; width: 1300px;">
+	<!-- 左半區塊 -->
+	<div id="left">
+		<!-- 選擇題目 -->
+		<div class="page-header">
+			<h1 th:text="${t.topic}"></h1>
+		</div>
+		<!-- 題目說明 -->
+		<div class="lead"
+			style="font-size: 15px; background-color: #e2fee8; border-radius: 10px; padding-left: 2px;">
+			題目說明:<br /> <span class="lead"
+				style="font-size: 13px; background-color: #e2fee8; border-radius: 10px; padding-left: 2px;"
+				th:text="${t.description}"> </span>
+		</div>
+		<div id="editable" class="apple" contenteditable="true"
+			th:utext="${t.article1 +t.article2 +t.article3 + t.article4}"
+			th:attrappend="data-id=${t.id}">
+			<br />&nbsp;&nbsp;&nbsp;&nbsp;汲汲營營於世，日夜苦思煩憂，我們用盡心力的追逐名與利，為求幸福的人生。而我們，卻仍陷於祿利之中，找不到方向，找不到真正能開啟幸福之門的通關密語。<br />
+			<br /> &nbsp;
+			早晨醒來，窗外鳥聲啁啾，我無意聆聽，媽媽親手製成的三明治，滿懷愛心的早晨，我食之無味，此時，我心中只有成績，思緒裡，只在意分數，與其無關者，皆不理會。「有了好成績，將來能進好的大學，未來可以找到好的工作，領有優渥薪資，迎來幸福」，這是我所堅信，所走的道路。<br />
+			<br /> &nbsp;
+			如往常般，耕耘於書桌上，突然，一道曙光，穿透緊閉的窗戶，射進房內，意外地，射進我的心。「不如，出去走走，為作文選材」，憑著仍為功名的藉口，我步出教科書外。河堤上，迎面吹來的春風微寒，道旁植物露珠，在朝陽照耀下，晶瑩剔透。突然有至陶淵明南山之感，心內一陣平靜。一兒童於公園內迷了路，一名男子，蹲在他身旁，邊安撫他，邊竭力理解他家的住址。「這就是孟子所言人之惻隱之心吧！」我驚異的發覺，古文所述，竟於真實世界中一一上演，於此刻，有些能體會柳宗元觀西山之感。<br />
+			<br /> &nbsp;
+			漫步悠遊，我竟漸漸忘卻利祿，如嬰童看世間般，我用全新的視角欣賞世界。突然，一種飄飄然之感，充斥著我身心，那是幸福之感，是我曾竭盡心力追求的人生目標，它的通關密語，竟在我臨時起意的散步中參破，彷有「眾裡尋他千百度，驀然回首，那人竟在燈火闌珊處」之感。<br />
+			<br /> &nbsp;
+			是的，幸福，一直在我身旁。早晨的鳥鳴，母親的愛，我卻習於忽視，反倒往遠在天邊，如遙遠恆星般，那不真切的「幸福」，全力邁進。我早已在幸福之中，卻處心積慮，破解密碼以啟幸福之門。<br />
+			&nbsp;<br />
+			抬頭仰望半月的夜空，再次尋找曾為我心中的北極星，似乎暗滅了，功名於我，不再代表幸福的象徵，也是呢！我不是早已獲得那組密語，打開大門了嗎？密語也只是「樂享一切，珍惜所有，知足常樂」，是極易參透的呢！<br />
+		</div>
+		<br />
+		<button type="button" class="btn btn-primary" data-toggle="collapse"
+			data-target="#review">評分說明</button>
+		<div id="review" class="lead"
+			style="font-size: 13px; background-color: #e2fee8; border-radius: 10px; padding-left: 2px;"
+			th:text="${t.review}"></div>
+	</div>
+
+
+	<!-- 右半區塊 -->
+	<div id="right">
+		<div id="slider3_container"
+			style="position: relative; top: 0px; left: 0px; width: 701px; height: 1200px; background: #fff; overflow-x: hidden; overflow-y: scroll;">
+			<!-- Slides Container -->
+			<div u="slides"
+				style="cursor: move; position: absolute; left: 99px; top: 0px; width: 500px; height: 1190px; border: 1px solid #aaaaaa; border-radius: 10px; -webkit-filter: blur(0px); background-color: #f5f5f5; overflow:hidden;">
+				<!-- 審題 -->
+				<div >
+					<div class="alert">
+						<span class="glyphicon glyphicon-info-sign"></span>
+						根據審題的定義閱讀題目與範文內容，再以引導問題做思考，點擊題目可以觀看參考答案，單擊參考答案會標記文章關鍵重點，雙擊取消標記，思考記錄區可以記錄自己的想法
+					</div>
+					<div class="container" th:each="f : ${fl}"
+						th:if="${f.type.equals('0')}">
+						<div class="header">
+							<span th:text="${f.title}">一、審視題目後，你認為文章使用什麼文體?&nbsp;</span> <span
+								class="glyphicon glyphicon-question-sign" data-container="body"
+								data-toggle="tooltip" data-placement="right"
+								th:title="${f.titleTip}"
+								title="閱讀完題目說明後先判斷本篇文章將以什麼文體撰寫 (例如: 記敘文、議論文)"> </span>
+						</div>
+						<div class="content forum_box">
+							<textarea rows="3" cols="55" th:attrappend="data-id=${f.id}"
+							th:text="${viewHelper.getForumRecordByForumId(fr,f.id) != null ? viewHelper.getForumRecordByForumId(fr,f.id).answer : ''}"
+								placeholder="思考紀錄..."></textarea>
+							<br />
+							<button type="button" class="btn btn-info"
+								style="font-size: 10.5px;">參考答案</button>
+							<div class="ans-area answer" style="display: none;"
+								data-container="body" data-toggle="tooltip"
+								data-placement="right" title="點擊一下可以在左方文章重點標示喔! 再連點兩下可以取消標記">
+								<span class="answer-text" th:text="${f.answer}"></span>
+								<p th:utext="${f.answerTip}" style="color: #479a4b;"></p>
+							</div>
+						</div>
+					</div>
+					<div u="thumb">1. 審題</div>
+				</div>
+				<!-- 立意 -->
+				<div>
+					<div class="alert">
+						<span class="glyphicon glyphicon-info-sign"></span>
+						立意主要是決定文章的中心思想，也就是主旨
+					</div>
+					<div class="container" th:each="f : ${fl}"
+						th:if="${f.type.equals('1')}">
+						<div class="header">
+							<span th:text="${f.title}">一、審視題目後，你認為文章使用什麼文體?&nbsp;</span> <span
+								class="glyphicon glyphicon-question-sign" data-container="body"
+								data-toggle="tooltip" data-placement="right"
+								th:title="${f.titleTip}"
+								title="閱讀完題目說明後先判斷本篇文章將以什麼文體撰寫 (例如: 記敘文、議論文)"> </span>
+						</div>
+						<div class="content forum_box">
+							<textarea rows="3" cols="55" th:attrappend="data-id=${f.id}"
+							th:text="${viewHelper.getForumRecordByForumId(fr,f.id) != null ? viewHelper.getForumRecordByForumId(fr,f.id).answer : ''}"
+								name="thinkrecord1" placeholder="思考紀錄..."></textarea>
+							<br />
+							<button type="button" class="btn btn-info"
+								style="font-size: 10.5px;">參考答案</button>
+							<div class="ans-area answer" style="display: none;"
+								data-container="body" data-toggle="tooltip"
+								data-placement="right" title="點擊一下可以在左方文章重點標示喔! 再連點兩下可以取消標記">
+								<span class="answer-text" th:text="${f.answer}"></span>
+								<p th:utext="${f.answerTip}" style="color: #479a4b;"></p>
+							</div>
+						</div>
+					</div>
+					<div u="thumb">2. 立意</div>
+				</div>
+				<!-- 構思取材 -->
+				<div>
+					<div class="alert">
+						<span class="glyphicon glyphicon-info-sign"></span>
+						選材時，以分類而言，通常分成：一、作為立意對立面的反方立場材料，二、支持立意主旨的正方立場材料，三、走向支持立意主旨的經歷、轉折材料<br />
+						包含: 1.作者自身經歷 2.名言佳句 3.事例典故 4.成語詩詞...等
+					</div>
+					<div class="container" th:each="f : ${fl}"
+						th:if="${f.type.equals('2')}">
+						<div class="header">
+							<span th:text="${f.title}">一、審視題目後，你認為文章使用什麼文體?&nbsp;</span> <span
+								class="glyphicon glyphicon-question-sign" data-container="body"
+								data-toggle="tooltip" data-placement="right"
+								th:title="${f.titleTip}"
+								title="閱讀完題目說明後先判斷本篇文章將以什麼文體撰寫 (例如: 記敘文、議論文)"> </span>
+						</div>
+						<div class="content forum_box">
+							<textarea rows="3" cols="55" th:attrappend="data-id=${f.id}"
+							th:text="${viewHelper.getForumRecordByForumId(fr,f.id) != null ? viewHelper.getForumRecordByForumId(fr,f.id).answer : ''}"
+								name="thinkrecord1" placeholder="思考紀錄..."></textarea>
+							<br />
+							<button type="button" class="btn btn-info"
+								style="font-size: 10.5px;">參考答案</button>
+							<div class="ans-area answer" style="display: none;"
+								data-container="body" data-toggle="tooltip"
+								data-placement="right" title="點擊一下可以在左方文章重點標示喔! 再連點兩下可以取消標記">
+								<span class="answer-text" th:text="${f.answer}"></span>
+								<p th:utext="${f.answerTip}" style="color: #479a4b;"></p>
+							</div>
+						</div>
+					</div>
+					<div u="thumb">3. 構思取材</div>
+				</div>
+				<!-- 布局 -->
+				<div>
+					<div class="alert">
+						<span class="glyphicon glyphicon-info-sign"></span>
+						根據決定好的審題文章走向、立意主旨與構思取材的材料，安排各個段落的內容，組織內容完整、頭尾連貫的文章
+					</div>
+					<div class="container" th:each="f : ${fl}"
+						th:if="${f.type.equals('3')}">
+						<div class="header">
+							<span th:text="${f.title}">一、審視題目後，你認為文章使用什麼文體?&nbsp;</span> <span
+								class="glyphicon glyphicon-question-sign" data-container="body"
+								data-toggle="tooltip" data-placement="right"
+								th:title="${f.titleTip}"
+								title="閱讀完題目說明後先判斷本篇文章將以什麼文體撰寫 (例如: 記敘文、議論文)"> </span>
+						</div>
+						<div class="content forum_box">
+							<textarea rows="3" cols="55" th:attrappend="data-id=${f.id}"
+							th:text="${viewHelper.getForumRecordByForumId(fr,f.id) != null ? viewHelper.getForumRecordByForumId(fr,f.id).answer : ''}"
+								name="thinkrecord11" placeholder="思考紀錄..."></textarea>
+							<br />
+							<button type="button" class="btn btn-info"
+								style="font-size: 10.5px;">參考答案</button>
+							<div class="answer-box" style="display: none">
+								<div
+									th:each="ff,status  : ${#strings.arraySplit(f.answer, '@@')}">
+									<div th:class="'btn-p' + ${status.index} +' ans-area'"
+										th:attrappend="data-pbox='paragraph'+${status.index},data-index=${status.index}"
+										th:text="${ff}"></div>
+									<br>
+								</div>
+								<p th:utext="${f.answerTip}" style="color: #479a4b;">
+									閱讀文章後發現作者的段落安排可以分成：<br /> 第一、二段內容定義了反方立場<br />
+									第三段內容使用了自身經歷作為轉折的事例，表達支持立意主旨的體悟<br />
+									第四、五段內容作為正方立場，表達從一開始反方立場經過轉折到正面立場的體悟作為總結<br />
+									最後第六段內容對整篇文章做總結，並清楚點出主旨是「樂享一切、珍惜所有、知足常樂」<br />
+								</p>
+							</div>
+						</div>
+					</div>
+					<div u="thumb">4. 布局</div>
+				</div>
+			</div>
+			<!-- ThumbnailNavigator Skin Begin -->
+			<div u="thumbnavigator" class="jssort13"
+				style="position: absolute; width: 100px; height: 150px; left: 0px; top: 0px;">
+				<!-- Thumbnail Item Skin Begin -->
+				<div u="slides"
+					style="cursor: move; top: 0px; left: 0px; border-top: 1px solid gray;">
+					<div u="prototype" class="p"
+						style="POSITION: absolute; WIDTH: 100px; HEIGHT: 30px; TOP: 0; LEFT: 0; padding: 0px;">
+						<div class=w>
+							<div u="thumbnailtemplate" class="c"
+								style="WIDTH: 100%; HEIGHT: 100%; position: absolute; TOP: 0; LEFT: 0; line-height: 28px; text-align: center;"></div>
+						</div>
+					</div>
+				</div>
+				<!-- Thumbnail Item Skin End -->
+			</div>
+			<!-- ThumbnailNavigator Skin End -->
+			<!--right end-->
+		</div>
+		<div style="clear: both"></div>
+		<a class="btn btn-default" href="writing_record_list" role="button">完成，回到文章列表</a>
+	</div>
+</div>
+<!-- 觀看答案script -->
+<!-- Start Script -->
+<script type="text/javascript" src="js/start.js"></script>
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+
+						var $forum_box = $(".forum_box"), $forum_answer_btn = $forum_box
+								.find("button"), $forum_answer = $forum_box
+								.find(".ans-area");
+
+						$forum_answer_btn.click(function() {
+							$(this).parent().find("[class^='ans']").toggle(
+									"fast");
+							$(this).parent().find("[class^='ans']")
+									.find('span').toggle('fast');
+						});
+
+						$forum_answer.click(function() {
+							var ans = "", index, className;
+							if ($(this).data("pbox") === undefined) {
+								ans = $(this).find('.answer-text').text()
+										.split('、');
+								for ( var i in ans) {
+									$(".apple").jmHighlight(ans[i], {
+										"element" : "span",
+										"className" : "customHighlight"
+									});
+								}
+							} else {
+								index = $(this).data("index");
+								className = $(this).data("pbox");
+								$(".p-box").eq(index).addClass(className);
+							}
+						});
+
+						$forum_answer.dblclick(function() {
+							var ans = "", index, className;
+							if ($(this).data("pbox") === undefined) {
+								ans = $(this).find('.answer-text').text()
+										.split('、');
+								for ( var i in ans) {
+									$(".apple").jmRemoveHighlight({
+										"element" : "span",
+										"className" : "customHighlight"
+									}, ans);
+								}
+							} else {
+								index = $(this).data("index");
+								className = $(this).data("pbox");
+								$(".p-box").eq(index).removeClass(className);
+							}
+						});
+
+						$("#editable").blur(function() {
+							var _this = $(this);
+							$.post("/saveTopicRecord", {
+								answer : _this.html(),
+								tid : _this.data("id")
+							}).done(function(data) {
+								console.log(data);
+							})
+						});
+
+						$("textarea[name^='thinkrecord']").blur(function() {
+							var _this = $(this);
+							$.post("/saveForumRecord", {
+								answer : _this.val(),
+								fid : _this.data("id")
+							}).done(function(data) {
+								console.log(data);
+							})
+						});
+
+					});
+</script>
