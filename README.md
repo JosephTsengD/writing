@@ -10,7 +10,24 @@
 
 ***
 
-**Deploy Guideline:**
+## Directory Structure
+
+![directory.PNG](http://user-image.logdown.io/user/13154/blog/13069/post/316383/tybOqclJS1ilH8HpoqYl_directory.PNG)
+
+***
+
+## System Flow Chart:
+
+![圖片1.jpg](http://user-image.logdown.io/user/13154/blog/13069/post/316383/PPUCwQAShWZKr675hiFI_%E5%9C%96%E7%89%871.jpg)
+
+***
+
+![writing_flow.gif](http://user-image.logdown.io/user/13154/blog/13069/post/316383/qVk4ni7QbSE5WXv4XLcz_writing_flow.gif)
+
+***
+
+
+**Deployment Guideline:**
 
 - Download STS from https://spring.io/tools/sts/all
 
