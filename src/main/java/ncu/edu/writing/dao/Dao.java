@@ -1,3 +1,4 @@
+//取值、新增修改刪除等資料存取介面
 package ncu.edu.writing.dao;
 
 import java.util.List;

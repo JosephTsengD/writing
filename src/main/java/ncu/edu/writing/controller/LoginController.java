@@ -1,6 +1,14 @@
+//使用者登入登出controller
+
 package ncu.edu.writing.controller;
 
 import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ncu.edu.writing.dao.ForumDao;
 import ncu.edu.writing.dao.ForumRecordDao;
@@ -8,12 +16,6 @@ import ncu.edu.writing.dao.TopicDao;
 import ncu.edu.writing.dao.TopicRecordDao;
 import ncu.edu.writing.dao.UserDao;
 import ncu.edu.writing.model.User;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author dough
@@ -58,13 +60,11 @@ public class LoginController extends AbstractController {
 			@RequestParam(value = "password", required = false) String password) {
 		if (session.getAttribute("userId") != null) {
 			User user = new User();
-			user.id = Integer.parseInt(session.getAttribute("userId")
-					.toString());
+			user.id = Integer.parseInt(session.getAttribute("userId").toString());
 			user.account = session.getAttribute("userAccount").toString();
 
 			model.addAttribute("user", user);
-			model.addAttribute(AbstractController.WIRTING_CONTENT,
-					"modules/writing_login");
+			model.addAttribute(AbstractController.WIRTING_CONTENT, "modules/writing_login");
 			return "layout/base";
 		}
 
@@ -75,16 +75,14 @@ public class LoginController extends AbstractController {
 			session.setAttribute("userAccount", user.account);
 			model.addAttribute("user", user);
 		}
-		model.addAttribute(AbstractController.WIRTING_CONTENT,
-				"modules/writing_login");
+		model.addAttribute(AbstractController.WIRTING_CONTENT, "modules/writing_login");
 		return "layout/base";
 	}
 
 	@RequestMapping("/writing_logout")
 	public String initLogin(Model model, HttpSession session) {
 		session.removeAttribute("userId");
-		model.addAttribute(AbstractController.WIRTING_CONTENT,
-				"modules/writing_login");
+		model.addAttribute(AbstractController.WIRTING_CONTENT, "modules/writing_login");
 		return "layout/base";
 	}
 

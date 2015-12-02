@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
 Implementation-Title: WritingV1.0
 Implementation-Version: 1.0
-Built-By: Joseph
 Implementation-Vendor-Id: ncu.edu
-Build-Jdk: 1.8.0_66
+Build-Jdk: 1.7.0_79
+Built-By: Joseph
 Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
 

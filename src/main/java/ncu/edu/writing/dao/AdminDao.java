@@ -1,10 +1,10 @@
+//JDBC資料庫存取實作
+
 package ncu.edu.writing.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
-import ncu.edu.writing.model.Admin;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +16,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
+import ncu.edu.writing.model.Admin;
+
 @Repository
 public class AdminDao implements Dao<Admin> {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(AdminDao.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminDao.class);
 
 	@Autowired
 	protected JdbcTemplate jdbc;
@@ -28,8 +29,7 @@ public class AdminDao implements Dao<Admin> {
 	@Override
 	public Admin get(int id) {
 		try {
-			return jdbc.queryForObject("SELECT * FROM admin WHERE id=?",
-					mapper, id);
+			return jdbc.queryForObject("SELECT * FROM admin WHERE id=?", mapper, id);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -37,15 +37,13 @@ public class AdminDao implements Dao<Admin> {
 
 	@Override
 	public List<Admin> get(List<Integer> ids) {
-		return jdbc.query("SELECT * FROM admin WHERE id IN (" + ids + ")",
-				mapper);
+		return jdbc.query("SELECT * FROM admin WHERE id IN (" + ids + ")", mapper);
 	}
 
 	@Override
 	public void saveOrUpdate(Admin entity) {
 		String query = "insert into admin (id, account, password) values (?,?,?)";
-		Object[] args = new Object[] { entity.id, entity.account,
-				entity.password };
+		Object[] args = new Object[] { entity.id, entity.account, entity.password };
 		jdbc.update(query, args);
 		entity.id = jdbc.queryForInt("select last_insert_id()");
 	}
@@ -58,8 +56,7 @@ public class AdminDao implements Dao<Admin> {
 
 	@Override
 	public void delete(List<Integer> ids) {
-		String inIds = StringUtils.arrayToCommaDelimitedString(ObjectUtils
-				.toObjectArray(ids));
+		String inIds = StringUtils.arrayToCommaDelimitedString(ObjectUtils.toObjectArray(ids));
 		String query = "delete from admin where id IN (" + inIds + ")";
 		jdbc.update(query, ids);
 	}
