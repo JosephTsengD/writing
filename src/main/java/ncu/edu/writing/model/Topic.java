@@ -10,5 +10,4 @@ public class Topic {
 	public String article4;
 	public String description;
 	public String review;
-
 }

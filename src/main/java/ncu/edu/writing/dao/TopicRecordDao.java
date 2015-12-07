@@ -4,10 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import ncu.edu.writing.model.TopicRecord;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,11 +12,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
+import ncu.edu.writing.model.TopicRecord;
+
 @Repository
 public class TopicRecordDao implements Dao<TopicRecord> {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(TopicRecordDao.class);
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(TopicRecordDao.class);
 
 	@Autowired
 	protected JdbcTemplate jdbc;
@@ -34,10 +32,8 @@ public class TopicRecordDao implements Dao<TopicRecord> {
 	 */
 	public TopicRecord getTopicRecordByUserIdAndTopicId(int userId, int topicId) {
 		try {
-			return jdbc
-					.queryForObject(
-							"SELECT * FROM topic_record WHERE user_id=? and topic_id = ?",
-							mapper, userId, topicId);
+			return jdbc.queryForObject("SELECT * FROM topic_record WHERE user_id=? and topic_id = ?", mapper, userId,
+					topicId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -47,8 +43,7 @@ public class TopicRecordDao implements Dao<TopicRecord> {
 	@Override
 	public TopicRecord get(int id) {
 		try {
-			return jdbc.queryForObject("SELECT * FROM topic_record WHERE id=?",
-					mapper, id);
+			return jdbc.queryForObject("SELECT * FROM topic_record WHERE id=?", mapper, id);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -56,22 +51,19 @@ public class TopicRecordDao implements Dao<TopicRecord> {
 
 	@Override
 	public List<TopicRecord> get(List<Integer> ids) {
-		return jdbc.query("SELECT * FROM topic_record WHERE id IN (" + ids
-				+ ")", mapper);
+		return jdbc.query("SELECT * FROM topic_record WHERE id IN (" + ids + ")", mapper);
 	}
 
 	@Override
 	public void saveOrUpdate(TopicRecord entity) {
 		if (entity.id == 0) {
 			String query = "insert into topic_record (id, answer, user_id,topic_id) values (?,?,?,?)";
-			Object[] args = new Object[] { entity.id, entity.answer,
-					entity.userId, entity.topicId };
+			Object[] args = new Object[] { entity.id, entity.answer, entity.userId, entity.topicId };
 			jdbc.update(query, args);
 			entity.id = jdbc.queryForInt("select last_insert_id()");
 		} else {
 			String query = "update topic_record set answer=?, user_id=?,topic_id=? where id=?";
-			Object[] args = new Object[] { entity.answer, entity.userId,
-					entity.topicId, entity.id };
+			Object[] args = new Object[] { entity.answer, entity.userId, entity.topicId, entity.id };
 			jdbc.update(query, args);
 		}
 	}
@@ -84,8 +76,7 @@ public class TopicRecordDao implements Dao<TopicRecord> {
 
 	@Override
 	public void delete(List<Integer> ids) {
-		String inIds = StringUtils.arrayToCommaDelimitedString(ObjectUtils
-				.toObjectArray(ids));
+		String inIds = StringUtils.arrayToCommaDelimitedString(ObjectUtils.toObjectArray(ids));
 		String query = "delete from topic_record where id IN (" + inIds + ")";
 		jdbc.update(query, ids);
 	}

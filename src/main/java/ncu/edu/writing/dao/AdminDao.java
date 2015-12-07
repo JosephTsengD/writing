@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,7 +19,8 @@ import ncu.edu.writing.model.Admin;
 @Repository
 public class AdminDao implements Dao<Admin> {
 
-	private static final Logger logger = LoggerFactory.getLogger(AdminDao.class);
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(AdminDao.class);
 
 	@Autowired
 	protected JdbcTemplate jdbc;

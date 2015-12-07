@@ -1,11 +1,10 @@
 package ncu.edu.writing.dao;
 
+//取值、新增修改刪除等資料存取介面
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,8 +18,9 @@ import ncu.edu.writing.model.Topic;
 @Repository
 public class TopicDao implements Dao<Topic> {
 
-	private static final Logger logger = LoggerFactory.getLogger(TopicDao.class);
-
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(TopicDao.class);
+	// jdbcTemplate模板操作類，把訪問jdbc的模板抽取到template中，使用模板類，可以不用管有關連接管理，關閉等細節
 	@Autowired
 	protected JdbcTemplate jdbc;
 
@@ -71,6 +71,10 @@ public class TopicDao implements Dao<Topic> {
 		jdbc.update(query, ids);
 	}
 
+	/**
+	 * 通過建立內部類實現RowMapper接口,可以將數據中的每一行數據封裝成用戶定義的類別,RowMapper中有一個mapRow方法,
+	 * 所以實現RowMapper接口一定要實現mapRow方法, 對自定義類的包裝就在mapRow方法中實現
+	 */
 	private static final RowMapper<Topic> mapper = new RowMapper<Topic>() {
 		public Topic mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Topic topic = new Topic();

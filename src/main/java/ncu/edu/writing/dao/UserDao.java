@@ -4,10 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import ncu.edu.writing.model.User;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,10 +12,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
+import ncu.edu.writing.model.User;
+
 @Repository
 public class UserDao implements Dao<User> {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(UserDao.class);
 
 	@Autowired
 	protected JdbcTemplate jdbc;
@@ -27,8 +26,7 @@ public class UserDao implements Dao<User> {
 	@Override
 	public User get(int id) {
 		try {
-			return jdbc.queryForObject("SELECT * FROM user WHERE id=?", mapper,
-					id);
+			return jdbc.queryForObject("SELECT * FROM user WHERE id=?", mapper, id);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -36,17 +34,14 @@ public class UserDao implements Dao<User> {
 
 	@Override
 	public List<User> get(List<Integer> ids) {
-		String inIds = StringUtils.arrayToCommaDelimitedString(ObjectUtils
-				.toObjectArray(ids));
-		return jdbc.query("SELECT * FROM user WHERE id IN (" + inIds + ")",
-				mapper);
+		String inIds = StringUtils.arrayToCommaDelimitedString(ObjectUtils.toObjectArray(ids));
+		return jdbc.query("SELECT * FROM user WHERE id IN (" + inIds + ")", mapper);
 	}
 
 	public User loginValidate(String account, String password) {
 
-		List<User> userlist = jdbc
-				.query("SELECT id, account, password FROM user WHERE account='"
-						+ account + "' AND password='" + password + "'", mapper);
+		List<User> userlist = jdbc.query("SELECT id, account, password FROM user WHERE account='" + account
+				+ "' AND password='" + password + "'", mapper);
 
 		// System.out.println(!userlist.isEmpty());
 		if (!userlist.isEmpty()) {
@@ -60,8 +55,7 @@ public class UserDao implements Dao<User> {
 	@Override
 	public void saveOrUpdate(User entity) {
 		String query = "insert into user (id, account, password) values (?,?,?)";
-		Object[] args = new Object[] { entity.id, entity.account,
-				entity.password };
+		Object[] args = new Object[] { entity.id, entity.account, entity.password };
 		jdbc.update(query, args);
 		entity.id = jdbc.queryForInt("select last_insert_id()");
 	}
@@ -74,8 +68,7 @@ public class UserDao implements Dao<User> {
 
 	@Override
 	public void delete(List<Integer> ids) {
-		String inIds = StringUtils.arrayToCommaDelimitedString(ObjectUtils
-				.toObjectArray(ids));
+		String inIds = StringUtils.arrayToCommaDelimitedString(ObjectUtils.toObjectArray(ids));
 		String query = "delete from user where id IN (" + inIds + ")";
 		jdbc.update(query, ids);
 	}
