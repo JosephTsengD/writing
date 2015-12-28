@@ -4,7 +4,8 @@
 
 ***
 
-- Description: Presented a new E-book display method on one window interface which is divided into two block, and develop an learning platform.
+- Description: The purpose of this study is to present a new e-book display method for learning writing via procedural knowledge and thinking, and develop an e-book learning platform.
+ - Presented a new E-book display method on one window interface which is divided into two block, displayed the process and products of procedural knowledge and thinking simultaneously. Our interface can highlight the points of articles when you click specific buttons. The function helps students can focus on their thinking about the article and questions in current step. When students are thinking in thinking forum, they can compare their thinking results with the author’s results (which are called reference answer in thinking forum) and learn more about author’s procedural knowledge and thinking strategy about writing.
 - Technology: Spring boot+ Thymeleaf, Bootstrap, jQuery, MySQL workbench, Apache Tomcat
 
 
