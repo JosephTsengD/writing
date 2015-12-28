@@ -25,37 +25,14 @@
 ![圖片1.jpg](http://user-image.logdown.io/user/13154/blog/13069/post/316383/PPUCwQAShWZKr675hiFI_%E5%9C%96%E7%89%871.jpg)
 
 ***
+## User Interface Presentation
 
 ![writing_flow.gif](http://user-image.logdown.io/user/13154/blog/13069/post/316383/qVk4ni7QbSE5WXv4XLcz_writing_flow.gif)
 
 ***
+## Database schema diagram
 
-
-**Deployment Guideline:**
-
-- Download STS from https://spring.io/tools/sts/all
-
-- import project by Exist Maven Project
-
-- forward engineering ER diagram into database schema
- ->add user to mysql -> 
-account : joseph / password : 123456 / role : DBA
-
-- right click project -> run as -> add maven configuration -> choose project -> goal : clean install -> skip test
-
-- right click project -> run as -> Spring Boot App
-
-- Tomcat: 
-set environment variables and setclasspath.bat, then run startup.bat
- 
-CLASSPATH, JAVA_HOME, JRE_HOME 
-
-- deploy war to tomcat
-
-search http://localhost:8080/
-
-set tomcat-users.xml
-
-then go to manager to deploy war
+![DB.JPG](http://user-image.logdown.io/user/13154/blog/13069/post/343269/2vv5CWxRZGCstSla3G3X_DB.JPG)
 
 ***
+
