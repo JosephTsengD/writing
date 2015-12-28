@@ -20,7 +20,7 @@
 
 ***
 
-## System Flow Chart:
+## System Flow Chart
 
 ![圖片1.jpg](http://user-image.logdown.io/user/13154/blog/13069/post/316383/PPUCwQAShWZKr675hiFI_%E5%9C%96%E7%89%871.jpg)
 
